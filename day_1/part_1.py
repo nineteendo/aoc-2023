@@ -1,3 +1,4 @@
+#!/usr/bin/python3
 """Day 1: Trebuchet?! - Part One"""
 import sys
 from os import chdir
