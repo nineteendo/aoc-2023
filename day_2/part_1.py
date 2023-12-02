@@ -49,10 +49,7 @@ def get_subset(i: int, string: str) -> tuple[int, str]:
     color:        str
     count_string, space, color = string.strip().partition(' ')
     color = color.strip()
-    if (
-        not count_string.isdigit() or space != ' ' or
-        color not in COLORS
-    ):
+    if not count_string.isdigit() or space != ' ' or color not in COLORS:
         raise RuntimeError(f'Line {i}: subset malformed')
 
     count: int = int(count_string)
@@ -66,15 +63,10 @@ def evaluate_game(i: int, string: str) -> int:
     prefix, suffix = partition_colon(i, string)
     game_id: int = get_game_id(i, prefix)
     for subsets_string in suffix.split(';'):
-        seen_colors: set[str] = set()
         for subset_string in subsets_string.split(','):
             count: int
             color: str
             count, color = get_subset(i, subset_string)
-            if color in seen_colors:
-                raise RuntimeError(f'Line {i}: color repeated')
-
-            seen_colors.add(color)
             if count > COLORS[color]:
                 return 0
 

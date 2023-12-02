@@ -15,7 +15,7 @@ def use_main_dir() -> None:
 
 def find_digit(string: str, *, reverse: bool = False) -> str:
     """Find first digit in string."""
-    matches: list[str] = findall('\\d', string)
+    matches: list[str] = findall(r'\d', string)
     if not matches:
         raise ValueError("String doesn't contain digits.")
 

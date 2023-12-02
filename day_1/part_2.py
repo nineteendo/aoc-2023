@@ -19,6 +19,7 @@ DIGITS: dict[str, str] = {
     'eight':   '8',
     'nine':    '9'
 }
+PATTERN: str = f'(?=({"|".join(DIGITS.keys())}))'
 
 
 def use_main_dir() -> None:
@@ -28,8 +29,7 @@ def use_main_dir() -> None:
 
 def find_digit(string: str, *, reverse: bool = False) -> str:
     """Find first digit in string."""
-    pattern: str = f'(?=({"|".join(DIGITS.keys())}))'
-    matches: list[str] = findall(pattern, string)
+    matches: list[str] = findall(PATTERN, string)
     if not matches:
         raise ValueError("String doesn't contain digits.")
 
